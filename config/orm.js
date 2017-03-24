@@ -28,3 +28,55 @@ function objectToSql(obj) {
     arr = arr.toString();
     return arr;
 }
+
+/* ORM object for all SQL query type */
+var orm = {
+
+  all: function(tableInput, cb) {
+      var queryString = "SELECT * FROM " + tableInput + ";";
+      connection.query(queryString, function(err, result) {
+          if(err) {
+              console.log(err);
+              throw err;
+          }
+
+          cb(result);
+
+      });
+
+  },
+
+  create: function(table, cols, vals, cb) {
+      var queryString = "INSERT INTO " + table;
+          queryString += " (";
+          queryString += cols.toString();
+          queryString += " VALUES (";
+          queryString += questionMarks(vals.length);
+          queryString += ") ";
+
+      connection.query(queryString, vals, function(err, result) {
+          if(err) {
+            console.log(err);
+            throw err;
+          }
+
+          cb(result);
+
+      });
+
+  },
+
+  update: function(table, objColVals, condition, cb) {
+      var queryString = "UPDATE " + table;
+          queryString += " SET ";
+          queryString += objectToSql(objColVals);
+          queryString += " WHERE ";
+          queryString += condition;
+  }
+
+
+
+
+
+
+}
