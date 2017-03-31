@@ -1,4 +1,5 @@
 <main>
+
   <div id="added">
     {{#each burgers}}
       {{#unless this.devoured}}
@@ -14,7 +15,28 @@
     {{/each}}
   </div>
 
-  
+  <div>
+    <ul id="eaten">
+      <li>
+        <h1> Eaten </h1>
+      </li>
+      {{#each burgers}}
+          {{#if this.devoured}}
+              <li>
+                {{this.burger_name}}
+              </li>
+          {{/if}}
+      {{/each}}
+    </ul>
+  </div>
 
+  <form method="POST" action='/addBurger'>
+      <input type="text" name="name" placeholder="Enter your burger" />
+      <input type="radio" name="devoured" value="1"> True
+      <input type="radio" name="devoured" value="0"> False
+      <input type="submit" />
+  </form>
 
 </main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
