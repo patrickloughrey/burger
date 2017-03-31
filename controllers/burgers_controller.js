@@ -16,6 +16,19 @@ router.get('/', function(req, res) {
     });
 });
 
+/* Post route */
+router.post("/", function(req, res) {
+    burger.create(['burger_name'], [req.body.name], function(response) {
+        res.redirect('/');
+    })
+})
+
+router.put("/:id", function(req, res) {
+    burger.update({ devoured: 1 }, { id: req.params.id }, function(response) {
+        res.redirect('/');
+    })
+})
+
 /* Export router */
 module.exports = router;
 

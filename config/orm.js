@@ -1,7 +1,7 @@
 'use strict'
 
 /* Require connection.js */
-var connection = require('./connection.js');
+var connection = require('../config/connection.js');
 
 /* Helper function to create question marks for SQL query */
 function questionMarks(num) {   
@@ -16,12 +16,12 @@ function questionMarks(num) {
 }
 
 /* Helper function for SQL object to proper syntax conversion */
-function objectToSql(obj) {
+function objectToSql(ob) {
     var arr = [];
 
-    for(var key in obj) {
-        if(Object.hasOwnProperty.call(obj, key)) {
-            arr.push(key + "=" + obj[key]);
+    for(var key in ob) {
+        if(Object.hasOwnProperty.call(ob, key)) {
+            arr.push(key + "=" + ob[key]);
         }
     }
 
