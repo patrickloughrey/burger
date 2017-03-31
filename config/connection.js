@@ -7,6 +7,7 @@ var app = require('../server');
 if(app.settings.env == "development") {
 
     var connection = mysql.createConnect({
+    port     : 3306,
     host     : 'localhost',
     user     : 'root',
     password : '',
@@ -16,6 +17,7 @@ if(app.settings.env == "development") {
 
 } else {  
    var connection = mysql.createConnection(process.env.JAWSDB_URL);
+
 }
 
 
